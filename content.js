@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // Create the input field
             const inputField = document.createElement('input');
             inputField.type = 'text';
-            inputField.placeholder = 'Auto-focused input';
+            inputField.placeholder = 'Text-based search...';
             inputField.id = 'custom-input-field';
             inputField.style.width = '100%';
             inputField.style.padding = '8px';
@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             inputContainer.appendChild(inputField);
 
             const searchButton = document.createElement('button');
-            searchButton.textContent = 'Los gehts!';
+            searchButton.textContent = 'Fill input';
             searchButton.style.padding = '8px';
             searchButton.style.fontSize = '16px';
             searchButton.style.marginLeft = '10px';
@@ -33,33 +33,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             searchButton.id = 'custom-search-button';
 
             searchButton.addEventListener('click', () => {
-
-                // Create a loading circle element
-                const loadingCircle = document.createElement('div');
-                loadingCircle.id = 'loading-circle';
-                loadingCircle.style.border = '16px solid #f3f3f3';
-                loadingCircle.style.borderTop = '16px solid #3498db';
-                loadingCircle.style.borderRadius = '50%';
-                loadingCircle.style.width = '24px';
-                loadingCircle.style.height = '24px';
-                loadingCircle.style.animation = 'spin 2s linear infinite';
-                loadingCircle.style.position = 'absolute';
-                loadingCircle.style.top = '50%';
-                loadingCircle.style.left = '50%';
-                loadingCircle.style.transform = 'translate(-50%, -50%)';
-                document.body.appendChild(loadingCircle);
-
-                // Add CSS for the loading circle animation
-                const style = document.createElement('style');
-                style.type = 'text/css';
-                style.innerHTML = `
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }`;
-                document.head.appendChild(style);
-
                 inputField.disabled = true;
+                searchButton.disabled = true;
                 const userInput = inputField.value;
         
                 // Check if the input is not empty
@@ -98,11 +73,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         } else {
                             console.error("No response from OpenAI API");
                         }
+
+                        
+                        inputField.disabled = false;
+                        searchButton.disabled = false;
+
+                        location.reload();
                     });
                 }
-
-                document.body.removeChild(loadingCircle);
-                inputField.disabled = false;
             });
 
             inputContainer.appendChild(searchButton);

@@ -10,10 +10,10 @@ async function callOpenAIAPI(userInput) {
         "abfahrt": string; // entweder ABFAHRT oder ANKUNFT
         "reisende": {
             "ermaessigungen": {
-                "art": string; // entweder BAHNCARD25, BAHNCARD50, BAHNCARD100 oder KEINE_ERMAESSIGUNG
-                "klasse": string; // KLASSE_1 oder KLASSE_2 (default falls Klasse nicht explizit genannt) oder KLASSENLOS (nur bei KEINE_ERMAESSIGUNG)
+                "art": string; // entweder BAHNCARD25, BAHNCARD50, BAHNCARD100 oder KEINE_ERMAESSIGUNG (default KEINE_ERMAESSIGUNG)
+                "klasse": string; // KLASSE_1 oder KLASSE_2 (default KLASSE_2 falls Klasse nicht explizit genannt) oder KLASSENLOS (falls KEINE_ERMAESSIGUNG)
             }[],
-            "typ": string; // entweder JUGENDLICHER (bis 27 Jahre), ERWACHSENER, SENIOR (ab 65 Jahr) oder FAHRRAD (Falls Fahrrad KEINE_ERMAESSIGUNG)
+            "typ": string; // entweder JUGENDLICHER (bis 27 Jahre), ERWACHSENER, SENIOR (ab 65 Jahr) oder FAHRRAD (Falls Fahrrad dann KEINE_ERMAESSIGUNG und KLASSENLOS bei Art und Klasse von Ermaessigungen) oder FAMILIENKIND (bis 15 Jahre)
             "anzahl": number; // Anzahl der Reisenden dieses Typs (default 1)
             "alter": [] //always an empty array
         }[],
