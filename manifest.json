@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Bahn.de Input Injector",
+  "version": "1.0",
+  "description": "Injects an input field above the quick finder form on bahn.de and auto-focuses it.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://www.bahn.de/*"],
+      "js": ["content.js"],
+"run_at": "document_start",
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+}
+}
